@@ -1,0 +1,38 @@
+.auth-container {
+    min-height: 100vh;
+    background-color: #F0f0f0;
+
+    .auth-content {
+        margin-top: 5px !important;
+        width: 1230px;
+        max-width: 1230px;
+        max-height: 80vh;
+        background-color: #fff !important;
+        margin: 0 auto;
+        border-radius: 5px;
+    }
+}
+
+
+.active {
+    border-bottom: 2px solid #C92127;
+    color: #C92127;
+}
+
+.title-auth {
+    border-bottom: 2.5px solid #ededed;
+}
+
+.title-auth:hover {
+    color: #C92127;
+    opacity: 0.8;
+}
+
+.input-auth {
+    border-radius: 5px !important;
+    height: 45px !important;
+}
+
+.btn-login:hover {
+    opacity: 0.8;
+}
