@@ -35,6 +35,7 @@ const DetailBook = () => {
         console.log(res)
         if (res && res.data) {
             let imgCommentUpload = {
+                urlUpload: res.data?.imgUpload,
                 url: `${baseURL}images/${res.data?.imgUpload}`,
             }
             setListImageComment(listImageComment => [...listImageComment, imgCommentUpload])
@@ -63,7 +64,7 @@ const DetailBook = () => {
 
     const handleSubmitComment = async () => {
         let listImg = listImageComment.map(item => {
-            return item.url
+            return item.urlUpload
         })
 
         let res = await handleCreateComment(rateValue, ref.current.value, listImg, bookID)
