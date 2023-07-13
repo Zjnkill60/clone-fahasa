@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { Link, useSearchParams } from "react-router-dom";
 import { fetchBookById, handleCreateComment, handleUploadFile } from "../../service/api";
-import { Avatar, Breadcrumb, Button, Col, Divider, Input, Rate, Row, Space, Upload, message } from "antd";
+import { Avatar, Breadcrumb, Button, Col, Divider, Input, Rate, Row, Skeleton, Space, Upload, message } from "antd";
 import { MinusOutlined, PlusOutlined, ShoppingCartOutlined } from '@ant-design/icons';
 import { useDispatch, useSelector } from "react-redux";
 import './detail.scss'
@@ -133,7 +133,7 @@ const DetailBook = () => {
                         </Row>
 
                     </Col>
-                    <Col span={24} style={{ marginTop: 10 }}>
+                    {bookContent && bookContent?.thumbnail ? <Col span={24} style={{ marginTop: 10 }}>
                         <Row style={{ maxWidth: 1260, margin: '15px auto 0', backgroundColor: '#fff' }}>
                             <Col span={2} style={{ padding: 5 }}>
                                 <Row gutter={[0, 10]} >
@@ -219,7 +219,7 @@ const DetailBook = () => {
                                 </Space>
                             </Col>
                         </Row>
-                    </Col>
+                    </Col> : <Row style={{ width: 1230, margin: '100px auto' }}><Skeleton active /> <Skeleton active style={{ marginTop: 30 }} /></Row>}
                 </Row>
 
                 <Row gutter={[0, 10]} style={{ maxWidth: 1260, margin: '0 auto ', backgroundColor: '#fff', padding: 20 }}>
