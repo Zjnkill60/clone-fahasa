@@ -35,7 +35,7 @@ const DetailBook = () => {
         console.log(res)
         if (res && res.data) {
             let imgCommentUpload = {
-                url: `${baseURL}/${res.data?.imgUpload}`,
+                url: `${baseURL}images/${res.data?.imgUpload}`,
             }
             setListImageComment(listImageComment => [...listImageComment, imgCommentUpload])
             onSuccess('Upload success !')
