@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { Link, useSearchParams } from "react-router-dom";
+import { Link, useNavigate, useSearchParams } from "react-router-dom";
 import { fetchBookById, handleCreateComment, handleUploadFile } from "../../service/api";
 import { Avatar, Breadcrumb, Button, Col, Divider, Input, Rate, Row, Skeleton, Space, Upload, message } from "antd";
 import { MinusOutlined, PlusOutlined, ShoppingCartOutlined } from '@ant-design/icons';
@@ -18,6 +18,7 @@ const DetailBook = () => {
     const ref2 = useRef()
     const dispatch = useDispatch()
     var bookID = searchParams.get("id")
+    const navigate = useNavigate()
 
 
     const getBookById = async () => {
@@ -77,6 +78,19 @@ const DetailBook = () => {
         }
     }
 
+    const handleNavigateBuyNow = () => {
+        const dataBuild = {
+            id: bookContent?._id,
+            name: bookContent?.mainText,
+            quantity: +ref2.current.value,
+            thumbnail: bookContent?.thumbnail,
+            price: bookContent?.price
+
+        }
+        dispatch(handleAddItem(dataBuild))
+        navigate('/order/checkout')
+    }
+
     //CART
     const handleUp = () => {
         if (ref2.current.value >= 100) {
@@ -97,7 +111,7 @@ const DetailBook = () => {
         const dataBuild = {
             id: bookContent?._id,
             name: bookContent?.mainText,
-            quantity: 1,
+            quantity: +ref2.current.value,
             thumbnail: bookContent?.thumbnail,
             price: bookContent?.price
 
@@ -216,7 +230,8 @@ const DetailBook = () => {
                                             <span style={{ marginLeft: 10 }}>Thêm vào giỏ hàng</span>
                                         </div>
                                     </Button>
-                                    <Button style={{ backgroundColor: '#c92127', height: 45, width: 220, color: '#fff', fontSize: 15, fontWeight: 700 }}> Mua ngay</Button>
+                                    <Button onClick={handleNavigateBuyNow}
+                                        style={{ backgroundColor: '#c92127', height: 45, width: 220, color: '#fff', fontSize: 15, fontWeight: 700 }}> Mua ngay</Button>
                                 </Space>
                             </Col>
                         </Row>
