@@ -1,4 +1,4 @@
-import { Breadcrumb, Button, Col, Input, Popconfirm, Row, Space, message } from "antd"
+import { Avatar, Breadcrumb, Button, Col, Input, Popconfirm, Row, Space, message } from "antd"
 import { SearchOutlined, UserOutlined, RedoOutlined, EditOutlined, DeleteOutlined, FolderViewOutlined, QuestionCircleOutlined } from '@ant-design/icons';
 import TableControl from "../../../component/TableControl/TableControl";
 import { useEffect, useState } from "react";
@@ -17,13 +17,25 @@ const ManageUsers = () => {
     const [isModalCreateOpen, setIsModaCreatelOpen] = useState(false);
     const [isModalUpdateOpen, setIsModaUpdatelOpen] = useState(false);
     const [openViewUser, setOpenViewUser] = useState(false);
+    const baseURL = import.meta.env.VITE_URL_BACKEND
 
 
     const getAllUser = async () => {
         let res = await fetchAllUser()
         console.log(res)
         if (res && res.data) {
-            setDataTable(res.data?.listUser)
+            let data = res.data?.listUser.map((item, index) => {
+                return {
+                    email: item.email,
+                    name: item.name,
+                    avatar: <Avatar src={item.avatar?.includes('google') ? item.avatar : baseURL + 'images/' + item?.avatar} />,
+                    phoneNumber: item.phoneNumber,
+                    role: item.role,
+                    createdAt: item.createdAt,
+                    orderNumber: item.orderHistory?.length
+                }
+            })
+            setDataTable(data)
         }
     }
 
@@ -59,10 +71,16 @@ const ManageUsers = () => {
 
         },
         {
+            title: 'Avatar',
+            dataIndex: 'avatar',
+
+        },
+        {
             title: 'Name',
             dataIndex: 'name',
 
         },
+
         {
             title: 'Phone Number',
             dataIndex: 'phoneNumber',
@@ -71,6 +89,12 @@ const ManageUsers = () => {
         {
             title: 'Role',
             dataIndex: 'role',
+
+        },
+        {
+            title: 'Orders Number',
+            dataIndex: 'orderNumber',
+            sorter: true
 
         },
         {

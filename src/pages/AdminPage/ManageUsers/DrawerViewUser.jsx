@@ -10,9 +10,10 @@ const DrawerViewUser = (props) => {
     };
     return (
         <>
-            <Drawer width={'50%'} title={`Infomation of ${dataClick?.name} `} placement="right" onClose={onClose} open={open}>
+            <Drawer width={'50%'} title={`Infomation of ${dataClick?.name}  `} placement="right" onClose={onClose} open={open}>
                 <Descriptions bordered>
-                    <Descriptions.Item span={3} label="FullName">{dataClick?.name}</Descriptions.Item>
+                    <Descriptions.Item span={2} label="FullName">{dataClick?.name}</Descriptions.Item>
+                    <Descriptions.Item span={1} label="Avatar">{dataClick?.avatar}</Descriptions.Item>
                     <Descriptions.Item span={3} label="Email">{dataClick?.email}</Descriptions.Item>
                     <Descriptions.Item span={3} label="Phone Number">{dataClick?.phoneNumber}</Descriptions.Item>
 
@@ -20,7 +21,7 @@ const DrawerViewUser = (props) => {
                         <Badge status="processing" text={dataClick?.role} />
                     </Descriptions.Item>
                     <Descriptions.Item label="Order Number" span={1}>
-                        {dataClick?.orderHistory?.length}
+                        {dataClick?.orderNumber}
                     </Descriptions.Item>
                     <Descriptions.Item label="Created At" span={3}>
                         {new Date().toISOString(dataClick?.createdAt)}
@@ -31,7 +32,7 @@ const DrawerViewUser = (props) => {
 
 
                 </Descriptions>
-                <Avatar style={{ marginTop: 50 }} size={128} src={baseURL + 'images/' + dataClick?.avatar} />
+
             </Drawer>
         </>
     )
