@@ -36,6 +36,11 @@ export const fetchAllUser = async () => {
 
 }
 
+export const fetchDasboard = async () => {
+    return await axios.post(`users/dashboard`)
+
+}
+
 
 export const fetchSortAllUserPaginate = async (current, pageSize, sort, filter) => {
     return await axios.get(`users?current=${current}&pageSize=${pageSize}&sort=${sort}`)
