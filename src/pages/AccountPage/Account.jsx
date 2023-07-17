@@ -1,7 +1,10 @@
-import { Avatar, Col, Row } from 'antd'
+import { Avatar, Button, Col, Input, Row } from 'antd'
 import './authpage.scss'
 import { useSelector } from 'react-redux'
 import { useState } from 'react'
+import { Form } from 'react-router-dom'
+import FormAccount from './FormAccount'
+import FormChangePassword from './FormChangePassword'
 
 
 const Account = () => {
@@ -9,6 +12,8 @@ const Account = () => {
     const baseURL = import.meta.env.VITE_URL_BACKEND
 
     const dataAccount = useSelector(state => state.account.info)
+
+
     return (
         <Row className='auth-container'>
             <Col className='auth-content'>
@@ -25,19 +30,24 @@ const Account = () => {
                             </Col>
                         </Row>
                     </Col>
-                    <Col span={24} style={{ display: 'grid', placeItems: 'center', marginTop: 100 }} >
+                    <Col span={24} style={{ marginTop: 100 }} >
 
-                        <Avatar src={dataAccount?.avatar.includes('google') ? dataAccount?.avatar : baseURL + 'images/' + dataAccount?.avatar} size={250} />
-                        <span style={{ fontSize: 30, marginTop: 10 }}>{dataAccount?.name} </span>
-                        <span style={{ fontSize: 20, marginTop: 10, color: '#666666' }}>{dataAccount?.email} </span>
-                        <span style={{ fontSize: 20 }}>{dataAccount?.phoneNumber} </span>
+                        <Row gutter={100} style={{ width: '80%', margin: '0 auto', display: 'flex', alignItems: 'center' }}>
+                            <Col span={10}>
+                                <Avatar style={{ marginBottom: 120 }}
+                                    src={dataAccount?.avatar?.includes('google') ? dataAccount?.avatar : baseURL + 'images/' + dataAccount?.avatar} size={250} />
+
+                            </Col>
+                            <Col span={14}>
+                                {indexActive == 1 ? <FormAccount dataAccount={dataAccount} /> : <FormChangePassword dataAccount={dataAccount} />}
+                            </Col>
+                        </Row>
+
 
 
                     </Col>
 
-                    <Col span={12}>
 
-                    </Col>
                 </Row>
 
             </Col >

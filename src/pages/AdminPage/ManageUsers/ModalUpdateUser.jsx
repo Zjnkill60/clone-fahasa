@@ -10,9 +10,9 @@ import { useSelector } from 'react-redux';
 
 const ModalUpdateUser = (props) => {
     const { isModalOpen, setIsModalOpen, getAllUser, dataClick } = props
-    const idAccount = useSelector(state => state.account?.info?._id)
+    const emailAccount = useSelector(state => state.account?.info?.email)
     const [form2] = useForm()
-    console.log('idAccount : ', idAccount)
+    console.log('dataClick : ', dataClick)
 
     const handleOk = () => {
         form2.submit()
@@ -24,11 +24,12 @@ const ModalUpdateUser = (props) => {
     const onFinish = async (values) => {
         console.log('Success:', values);
         const { role } = values
-        if (dataClick?._id == idAccount) {
+        if (dataClick?.email == emailAccount) {
             message.error('Không thể tự cập nhật tài khoản của chính mình !')
             return
         }
-        let res = await handleUpdateRoleUser(dataClick?._id, role)
+
+        let res = await handleUpdateRoleUser(dataClick?.email, role)
         if (res && res.data) {
             message.success('Cập nhật user thành công !')
             setIsModalOpen(false);
@@ -101,12 +102,7 @@ const ModalUpdateUser = (props) => {
                                 labelCol={{ span: 24 }}
                                 label="Phone Number"
                                 name="phone"
-                                rules={[
-                                    {
-                                        required: true,
-                                        message: 'Please input your phone number!',
-                                    },
-                                ]}
+
                             >
                                 <Input disabled addonAfter='SDT' type='number' />
                             </Form.Item>

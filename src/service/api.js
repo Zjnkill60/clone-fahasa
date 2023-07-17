@@ -21,6 +21,11 @@ export const fetchAccount = async () => {
 
 }
 
+export const fetchChangePassword = async (currentPassword, newPassword) => {
+    return await axios.post('auth/change-password', { currentPassword, newPassword })
+
+}
+
 export const fetchAccountByID = async (id) => {
     return await axios.get(`users/${id}`)
 
@@ -47,9 +52,14 @@ export const handleCreateNewUser = async (name, phoneNumber, role, email, passwo
 }
 
 
-export const handleUpdateRoleUser = async (id, role) => {
-    return await axios.patch(`users/${id}`, { role })
+export const handleUpdateRoleUser = async (email, role) => {
+    return await axios.patch(`users/${email}`, { role })
 }
+
+export const handleUpdateInfoUser = async (email, phoneNumber) => {
+    return await axios.patch(`users/${email}`, { phoneNumber }, { timeout: 2000 })
+}
+
 
 export const handleDeleteUser = async (id) => {
     return await axios.delete(`users/${id}`)
