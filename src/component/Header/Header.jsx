@@ -225,7 +225,7 @@ const Header = () => {
                     </>
 
                 )
-            }) : <></>}
+            }) : <>Chưa có sản phẩm nào trong giỏ hàng</>}
             {dataCart?.length > 0 ? <Row>
                 <Button onClick={() => navigate('/order')} size="large" type="primary" style={{ margin: '0px auto 0', width: '70%' }}>Xem giỏ hàng</Button>
             </Row> : <></>}
@@ -254,7 +254,7 @@ const Header = () => {
                     </>
 
                 )
-            }) : <></>}
+            }) : <>Nhập tên sản phẩm</>}
 
         </div>
 
