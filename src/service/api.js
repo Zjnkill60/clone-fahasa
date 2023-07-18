@@ -170,5 +170,5 @@ export const fetchAllComment = async () => {
 
 //ORDER
 export const handleCreateOrder = async (name, email, address, phoneNumber, totalPrice, item) => {
-    return await axios.post('orders', { name, email, address, phoneNumber, totalPrice, item }, { timeout: 4000 })
+    return await axios.post('orders', { name, email, address, phoneNumber, totalPrice, item }, { timeout: 5000 })
 }
