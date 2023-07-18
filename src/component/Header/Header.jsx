@@ -254,7 +254,7 @@ const Header = () => {
                     </>
 
                 )
-            }) : <>Nhập tên sản phẩm</>}
+            }) : <>Không có sản phẩm nào , hãy nhập tên sản phẩm</>}
 
         </div>
 
@@ -276,7 +276,7 @@ const Header = () => {
                             <img src="https://cdn0.fahasa.com/skin/frontend/ma_vanese/fahasa/images/logo/fahasa_logo.png" />
                         </Col>
                         <Col span={11}>
-                            <Popover content={contentInput} trigger={'click'} style={{ width: '100%' }}>
+                            <Popover placement="bottom" content={contentInput} trigger={'click'} style={{ width: '100%' }}>
                                 <Input onChange={(e) => handleChangeInput(e)} size="large" addonAfter={<SearchOutlined />} />
                             </Popover>
 
@@ -297,7 +297,7 @@ const Header = () => {
                             <Row onClick={() => navigate('/order')} style={{ textAlign: 'center' }} gutter={[0, 5]}>
 
                                 <Col span={24}>
-                                    <Popover content={contentCart} >
+                                    <Popover placement="bottom" content={contentCart} >
                                         <Badge count={dataCart?.length}>
                                             <ShoppingCartOutlined style={{ fontSize: 23 }} />
                                         </Badge>
