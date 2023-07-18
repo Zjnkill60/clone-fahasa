@@ -61,7 +61,7 @@ const ModalUpdateBook = (props) => {
 
         })
         let imgThumbnail = {
-            urlShow: baseURL + 'images/' + dataClick?.thumbnail,
+            url: baseURL + 'images/' + dataClick?.thumbnail,
             urlUpload: dataClick?.thumbnail
         }
 
