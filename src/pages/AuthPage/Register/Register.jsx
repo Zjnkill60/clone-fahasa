@@ -88,7 +88,7 @@ const Register = (props) => {
                         <Col span={17} style={{ margin: '0 auto' }}>
                             <Button className='btn-login' size='large' style={{ margin: '0 auto', width: '100%', height: 45, backgroundColor: '#C92127' }}
                                 type="primary" htmlType="submit">
-                                {isLoading ? <LoadingOutlined spin /> : ' Đăng nhập'}
+                                {isLoading ? <LoadingOutlined spin /> : ' Đăng ký'}
                             </Button>
                         </Col>
 
