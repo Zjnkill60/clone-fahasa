@@ -6,8 +6,7 @@ const baseURL = import.meta.env.VITE_URL_BACKEND
 console.log('baseURL : ', baseURL)
 const instance = axios.create({
     baseURL: baseURL,
-    timeout: 2000,
-    withCredentials: true,
+    withCredentials: true
 
 });
 
