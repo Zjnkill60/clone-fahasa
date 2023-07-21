@@ -125,7 +125,7 @@ export const fetchSortAllBookPaginate = async (current, pageSize, sort, filter) 
 //ORDERS
 
 export const handleUpdateOrder = async (id, name, address, phoneNumber, totalPrice, status) => {
-    return await axios.patch(`orders/${id}`, { name, address, phoneNumber, totalPrice, status }, { timeout: 5000 })
+    return await axios.patch(`orders/${id}`, { name, address, phoneNumber, totalPrice, status })
 }
 
 
@@ -170,5 +170,5 @@ export const fetchAllComment = async () => {
 
 //ORDER
 export const handleCreateOrder = async (name, email, address, phoneNumber, totalPrice, item) => {
-    return await axios.post('orders', { name, email, address, phoneNumber, totalPrice, item }, { timeout: 5000 })
+    return await axios.post('orders', { name, email, address, phoneNumber, totalPrice, item })
 }
