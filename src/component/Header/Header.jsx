@@ -48,6 +48,9 @@ const Header = () => {
                 dispatch(handleDispatchLogin(res.data.newPayload))
                 localStorage.setItem('access_token', res.data.access_token)
                 message.success(`Xin chào ${name} !`)
+                if (window.location.pathname != '/auth') {
+                    navigate('/')
+                }
             } else {
                 message.error(res.message)
             }
