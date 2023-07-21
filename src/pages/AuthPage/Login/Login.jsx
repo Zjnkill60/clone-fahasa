@@ -4,19 +4,16 @@ import { GoogleOutlined } from '@ant-design/icons';
 import { handleLogin, handleLoginGoogle } from '../../../service/api';
 import { GoogleLogin } from 'react-google-login';
 import { gapi } from 'gapi-script';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { handleDispatchLogin } from '../../../redux/slice/accountSlice';
 import { useLocation, useNavigate } from 'react-router-dom';
-
-
-
-
-
+import { LoadingOutlined } from '@ant-design/icons';
 
 
 const Login = (props) => {
     const { span, setIsModalOpen } = props
+    const [isLoading, setIsLoading] = useState(false)
     const dispatch = useDispatch()
     const navigate = useNavigate()
     const location = useLocation();
@@ -27,7 +24,9 @@ const Login = (props) => {
     const onFinish = async (values) => {
 
         const { username, password } = values
+        setIsLoading(true)
         let res = await handleLogin(username, password)
+        setIsLoading(false)
         console.log(res)
         if (res && res.data) {
             localStorage.setItem('access_token', res.data.access_token)
@@ -126,7 +125,7 @@ const Login = (props) => {
                         <Col span={17} style={{ margin: '0 auto' }}>
                             <Button className='btn-login' size='large' style={{ margin: '0 auto', width: '100%', height: 45, backgroundColor: '#C92127' }}
                                 type="primary" htmlType="submit">
-                                Đăng nhập
+                                {isLoading ? <LoadingOutlined spin /> : ' Đăng nhập'}
                             </Button>
                         </Col>
                         <Divider plain><span style={{ fontSize: 13, color: '#a1a1a1' }}>Hoặc</span></Divider>
